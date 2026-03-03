@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.btn {
+  flex: 1;
+  padding: var(--space-sm) var(--space-xs);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: white;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btnFail {
+  background: var(--color-error);
+}
+
+.btnHard {
+  background: var(--color-warning);
+  color: var(--color-text);
+}
+
+.btnGood {
+  background: var(--color-primary-light);
+}
+
+.btnEasy {
+  background: var(--color-primary-dark);
+}
+
+.label {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  opacity: 0.85;
+  margin-top: 2px;
+}

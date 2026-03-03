@@ -1,0 +1,78 @@
+import type { GrammarExercise, GrammarTopic } from '../types';
+
+export const grammarTopics: GrammarTopic[] = [
+  { id: 'articles', name: 'Артиклі', icon: '📝', description: 'Означені та неозначені артиклі' },
+  { id: 'present_tense', name: 'Теперішній час', icon: '⏰', description: 'Дієвідміна дієслів у presente' },
+  { id: 'prepositions', name: 'Прийменники', icon: '📍', description: 'Основні прийменники та їх використання' },
+  { id: 'pronouns', name: 'Займенники', icon: '👤', description: 'Особові та вказівні займенники' },
+];
+
+export const grammarExercises: GrammarExercise[] = [
+  // === АРТИКЛІ (15 вправ) ===
+  { id: 'g1', topicId: 'articles', type: 'multiple_choice', question: '___ ragazzo (хлопець)', correctAnswer: 'Il', options: ['Il', 'La', 'Lo', 'I'], explanation: 'Il — означений артикль для чоловічого роду однини перед приголосною.' },
+  { id: 'g2', topicId: 'articles', type: 'multiple_choice', question: '___ ragazza (дівчина)', correctAnswer: 'La', options: ['Il', 'La', 'Lo', 'Le'], explanation: 'La — означений артикль для жіночого роду однини.' },
+  { id: 'g3', topicId: 'articles', type: 'multiple_choice', question: '___ studente (студент)', correctAnswer: 'Lo', options: ['Il', 'La', 'Lo', 'L\''], explanation: 'Lo — означений артикль перед s+приголосна, z, gn, ps, x.' },
+  { id: 'g4', topicId: 'articles', type: 'multiple_choice', question: '___ amico (друг)', correctAnswer: "L'", options: ['Il', 'La', "L'", 'Lo'], explanation: "L' — означений артикль перед голосною (чоловічий і жіночий рід)." },
+  { id: 'g5', topicId: 'articles', type: 'multiple_choice', question: '___ libri (книги)', correctAnswer: 'I', options: ['I', 'Gli', 'Le', 'Il'], explanation: 'I — означений артикль для чоловічого роду множини перед приголосною.' },
+  { id: 'g6', topicId: 'articles', type: 'multiple_choice', question: '___ studenti (студенти)', correctAnswer: 'Gli', options: ['I', 'Gli', 'Le', 'Lo'], explanation: 'Gli — означений артикль для чоловічого роду множини перед голосною або s+приголосна.' },
+  { id: 'g7', topicId: 'articles', type: 'multiple_choice', question: '___ ragazze (дівчата)', correctAnswer: 'Le', options: ['I', 'Gli', 'Le', 'La'], explanation: 'Le — означений артикль для жіночого роду множини.' },
+  { id: 'g8', topicId: 'articles', type: 'fill_blank', question: '___ casa è grande. (Дім великий.)', correctAnswer: 'La', explanation: 'Casa — жіночий рід, тому використовуємо означений артикль La.' },
+  { id: 'g9', topicId: 'articles', type: 'fill_blank', question: '___ uomo è alto. (Чоловік високий.)', correctAnswer: "L'", explanation: "Uomo починається з голосної, тому використовуємо L'." },
+  { id: 'g10', topicId: 'articles', type: 'multiple_choice', question: '___ libro (книга) — неозначений артикль', correctAnswer: 'Un', options: ['Un', 'Uno', 'Una', "Un'"], explanation: 'Un — неозначений артикль для чоловічого роду перед приголосною або голосною.' },
+  { id: 'g11', topicId: 'articles', type: 'multiple_choice', question: '___ studentessa (студентка) — неозначений артикль', correctAnswer: 'Una', options: ['Un', 'Uno', 'Una', "Un'"], explanation: 'Una — неозначений артикль для жіночого роду перед приголосною.' },
+  { id: 'g12', topicId: 'articles', type: 'multiple_choice', question: '___ amica (подруга) — неозначений артикль', correctAnswer: "Un'", options: ['Un', 'Uno', 'Una', "Un'"], explanation: "Un' — неозначений артикль для жіночого роду перед голосною." },
+  { id: 'g13', topicId: 'articles', type: 'multiple_choice', question: '___ zaino (рюкзак) — неозначений артикль', correctAnswer: 'Uno', options: ['Un', 'Uno', 'Una', "Un'"], explanation: 'Uno — неозначений артикль для чоловічого роду перед z, s+приголосна.' },
+  { id: 'g14', topicId: 'articles', type: 'fill_blank', question: 'Ho ___ gatto. (У мене є кіт.)', correctAnswer: 'un', explanation: 'Gatto — чоловічий рід, починається з приголосної, тому un.' },
+  { id: 'g15', topicId: 'articles', type: 'fill_blank', question: 'C\'è ___ chiesa qui vicino. (Тут поруч є церква.)', correctAnswer: 'una', explanation: 'Chiesa — жіночий рід, починається з приголосної, тому una.' },
+
+  // === ТЕПЕРІШНІЙ ЧАС (15 вправ) ===
+  { id: 'g16', topicId: 'present_tense', type: 'fill_blank', question: 'Io ___ (parlare) italiano. (Я говорю італійською.)', correctAnswer: 'parlo', explanation: 'Дієслова на -are: io → -o. Parlare → parlo.' },
+  { id: 'g17', topicId: 'present_tense', type: 'fill_blank', question: 'Tu ___ (mangiare) la pizza. (Ти їш піцу.)', correctAnswer: 'mangi', explanation: 'Дієслова на -are: tu → -i. Mangiare → mangi.' },
+  { id: 'g18', topicId: 'present_tense', type: 'fill_blank', question: 'Lui ___ (lavorare) molto. (Він багато працює.)', correctAnswer: 'lavora', explanation: 'Дієслова на -are: lui/lei → -a. Lavorare → lavora.' },
+  { id: 'g19', topicId: 'present_tense', type: 'fill_blank', question: 'Noi ___ (studiare) l\'italiano. (Ми вивчаємо італійську.)', correctAnswer: 'studiamo', explanation: 'Дієслова на -are: noi → -iamo. Studiare → studiamo.' },
+  { id: 'g20', topicId: 'present_tense', type: 'fill_blank', question: 'Voi ___ (abitare) a Roma. (Ви живете у Римі.)', correctAnswer: 'abitate', explanation: 'Дієслова на -are: voi → -ate. Abitare → abitate.' },
+  { id: 'g21', topicId: 'present_tense', type: 'fill_blank', question: 'Loro ___ (cantare) bene. (Вони гарно співають.)', correctAnswer: 'cantano', explanation: 'Дієслова на -are: loro → -ano. Cantare → cantano.' },
+  { id: 'g22', topicId: 'present_tense', type: 'fill_blank', question: 'Io ___ (leggere) un libro. (Я читаю книгу.)', correctAnswer: 'leggo', explanation: 'Дієслова на -ere: io → -o. Leggere → leggo.' },
+  { id: 'g23', topicId: 'present_tense', type: 'fill_blank', question: 'Tu ___ (scrivere) una lettera. (Ти пишеш листа.)', correctAnswer: 'scrivi', explanation: 'Дієслова на -ere: tu → -i. Scrivere → scrivi.' },
+  { id: 'g24', topicId: 'present_tense', type: 'fill_blank', question: 'Io ___ (dormire) otto ore. (Я сплю вісім годин.)', correctAnswer: 'dormo', explanation: 'Дієслова на -ire: io → -o. Dormire → dormo.' },
+  { id: 'g25', topicId: 'present_tense', type: 'fill_blank', question: 'Lei ___ (capire) tutto. (Вона розуміє все.)', correctAnswer: 'capisce', explanation: 'Дієслова на -ire (з -isc-): lui/lei → -isce. Capire → capisce.' },
+  { id: 'g26', topicId: 'present_tense', type: 'multiple_choice', question: 'Io ___ (essere) italiano.', correctAnswer: 'sono', options: ['sono', 'sei', 'è', 'siamo'], explanation: 'Essere (бути): io → sono.' },
+  { id: 'g27', topicId: 'present_tense', type: 'multiple_choice', question: 'Tu ___ (avere) una macchina.', correctAnswer: 'hai', options: ['ho', 'hai', 'ha', 'abbiamo'], explanation: 'Avere (мати): tu → hai.' },
+  { id: 'g28', topicId: 'present_tense', type: 'multiple_choice', question: 'Noi ___ (andare) al cinema.', correctAnswer: 'andiamo', options: ['vado', 'vai', 'va', 'andiamo'], explanation: 'Andare (йти): noi → andiamo.' },
+  { id: 'g29', topicId: 'present_tense', type: 'multiple_choice', question: 'Io ___ (fare) colazione.', correctAnswer: 'faccio', options: ['faccio', 'fai', 'fa', 'facciamo'], explanation: 'Fare (робити): io → faccio.' },
+  { id: 'g30', topicId: 'present_tense', type: 'multiple_choice', question: 'Lei ___ (potere) venire.', correctAnswer: 'può', options: ['posso', 'puoi', 'può', 'possiamo'], explanation: 'Potere (могти): lei → può.' },
+
+  // === ПРИЙМЕННИКИ (15 вправ) ===
+  { id: 'g31', topicId: 'prepositions', type: 'multiple_choice', question: 'Vado ___ Roma. (Я їду до Риму.)', correctAnswer: 'a', options: ['a', 'in', 'di', 'da'], explanation: 'A — використовується з назвами міст: a Roma, a Milano.' },
+  { id: 'g32', topicId: 'prepositions', type: 'multiple_choice', question: 'Vivo ___ Italia. (Я живу в Італії.)', correctAnswer: 'in', options: ['a', 'in', 'di', 'da'], explanation: 'In — використовується з назвами країн: in Italia, in Ucraina.' },
+  { id: 'g33', topicId: 'prepositions', type: 'multiple_choice', question: 'Sono ___ Ucraina. (Я з України.)', correctAnswer: "dell'", options: ['di', "dell'", 'da', 'in'], explanation: "Dell' — означає походження з країни (di + l')." },
+  { id: 'g34', topicId: 'prepositions', type: 'multiple_choice', question: 'Vengo ___ te. (Я приходжу від тебе.)', correctAnswer: 'da', options: ['a', 'di', 'da', 'con'], explanation: 'Da — означає "від" (від когось/звідкись).' },
+  { id: 'g35', topicId: 'prepositions', type: 'multiple_choice', question: 'Vado al cinema ___ Marco. (Я йду в кіно з Марко.)', correctAnswer: 'con', options: ['a', 'di', 'da', 'con'], explanation: 'Con — означає "з" (у значенні "разом з").' },
+  { id: 'g36', topicId: 'prepositions', type: 'fill_blank', question: 'Il libro è ___ tavolo. (Книга на столі.)', correctAnswer: 'sul', explanation: 'Sul = su + il. Su — означає "на".' },
+  { id: 'g37', topicId: 'prepositions', type: 'fill_blank', question: 'Vado ___ scuola. (Я йду до школи.)', correctAnswer: 'a', explanation: 'A — використовується з місцями: a scuola, a casa, a teatro.' },
+  { id: 'g38', topicId: 'prepositions', type: 'multiple_choice', question: 'Parto ___ le otto. (Я виїжджаю о восьмій.)', correctAnswer: 'alle', options: ['a', 'alle', 'nelle', 'dalle'], explanation: 'Alle = a + le. Використовується з часом у множині.' },
+  { id: 'g39', topicId: 'prepositions', type: 'fill_blank', question: 'Il gatto è ___ il letto. (Кіт під ліжком.)', correctAnswer: 'sotto', explanation: 'Sotto — прийменник "під".' },
+  { id: 'g40', topicId: 'prepositions', type: 'fill_blank', question: 'La farmacia è ___ alla banca. (Аптека поруч з банком.)', correctAnswer: 'accanto', explanation: 'Accanto a — означає "поруч з".' },
+  { id: 'g41', topicId: 'prepositions', type: 'multiple_choice', question: 'Il ristorante è ___ la piazza. (Ресторан перед площею.)', correctAnswer: 'davanti a', options: ['davanti a', 'dietro', 'dentro', 'sopra'], explanation: 'Davanti a — означає "перед".' },
+  { id: 'g42', topicId: 'prepositions', type: 'multiple_choice', question: 'La macchina è ___ il garage. (Машина в гаражі.)', correctAnswer: 'dentro', options: ['sopra', 'sotto', 'dentro', 'fuori'], explanation: 'Dentro — означає "всередині".' },
+  { id: 'g43', topicId: 'prepositions', type: 'fill_blank', question: 'Il supermercato è ___ la chiesa. (Супермаркет за церквою.)', correctAnswer: 'dietro', explanation: 'Dietro — означає "за, позаду".' },
+  { id: 'g44', topicId: 'prepositions', type: 'multiple_choice', question: 'Questa lettera è ___ te. (Цей лист для тебе.)', correctAnswer: 'per', options: ['per', 'da', 'a', 'con'], explanation: 'Per — означає "для".' },
+  { id: 'g45', topicId: 'prepositions', type: 'fill_blank', question: 'Vado in vacanza ___ due settimane. (Я їду у відпустку на два тижні.)', correctAnswer: 'per', explanation: 'Per — використовується для означення тривалості.' },
+
+  // === ЗАЙМЕННИКИ (15 вправ) ===
+  { id: 'g46', topicId: 'pronouns', type: 'multiple_choice', question: '___ sono ucraino. (Я — українець.)', correctAnswer: 'Io', options: ['Io', 'Tu', 'Lui', 'Noi'], explanation: 'Io — особовий займенник 1-ї особи однини (я).' },
+  { id: 'g47', topicId: 'pronouns', type: 'multiple_choice', question: '___ sei molto simpatico. (Ти дуже милий.)', correctAnswer: 'Tu', options: ['Io', 'Tu', 'Lei', 'Voi'], explanation: 'Tu — особовий займенник 2-ї особи однини (ти).' },
+  { id: 'g48', topicId: 'pronouns', type: 'multiple_choice', question: '___ è un bravo ragazzo. (Він гарний хлопець.)', correctAnswer: 'Lui', options: ['Io', 'Tu', 'Lui', 'Lei'], explanation: 'Lui — особовий займенник 3-ї особи чоловічого роду (він).' },
+  { id: 'g49', topicId: 'pronouns', type: 'multiple_choice', question: '___ è molto intelligente. (Вона дуже розумна.)', correctAnswer: 'Lei', options: ['Lui', 'Lei', 'Noi', 'Loro'], explanation: 'Lei — особовий займенник 3-ї особи жіночого роду (вона).' },
+  { id: 'g50', topicId: 'pronouns', type: 'multiple_choice', question: '___ andiamo al mare. (Ми їдемо на море.)', correctAnswer: 'Noi', options: ['Io', 'Voi', 'Noi', 'Loro'], explanation: 'Noi — особовий займенник 1-ї особи множини (ми).' },
+  { id: 'g51', topicId: 'pronouns', type: 'fill_blank', question: '___ parlate italiano? (Ви говорите італійською?)', correctAnswer: 'Voi', explanation: 'Voi — особовий займенник 2-ї особи множини (ви).' },
+  { id: 'g52', topicId: 'pronouns', type: 'fill_blank', question: '___ sono italiani. (Вони — італійці.)', correctAnswer: 'Loro', explanation: 'Loro — особовий займенник 3-ї особи множини (вони).' },
+  { id: 'g53', topicId: 'pronouns', type: 'multiple_choice', question: '___ libro è interessante. (Ця книга цікава.)', correctAnswer: 'Questo', options: ['Questo', 'Quello', 'Questa', 'Quella'], explanation: 'Questo — вказівний займенник "цей" (чол. рід).' },
+  { id: 'g54', topicId: 'pronouns', type: 'multiple_choice', question: '___ ragazza è alta. (Та дівчина висока.)', correctAnswer: 'Quella', options: ['Questo', 'Quello', 'Questa', 'Quella'], explanation: 'Quella — вказівний займенник "та" (жін. рід).' },
+  { id: 'g55', topicId: 'pronouns', type: 'fill_blank', question: 'Ti presento ___ amico Marco. (Представляю тобі мого друга Марко.)', correctAnswer: 'il mio', explanation: 'Il mio — присвійний займенник "мій" (чол. рід з артиклем).' },
+  { id: 'g56', topicId: 'pronouns', type: 'fill_blank', question: '___ casa è grande. (Твій дім великий.)', correctAnswer: 'La tua', explanation: 'La tua — присвійний займенник "твій" (жін. рід з артиклем, бо casa — жін. рід).' },
+  { id: 'g57', topicId: 'pronouns', type: 'multiple_choice', question: 'Questi sono ___ libri. (Це наші книги.)', correctAnswer: 'i nostri', options: ['il mio', 'i tuoi', 'i nostri', 'i loro'], explanation: 'I nostri — присвійний займенник "наші" (чол. рід множини).' },
+  { id: 'g58', topicId: 'pronouns', type: 'multiple_choice', question: '___ piace il gelato. (Мені подобається морозиво.)', correctAnswer: 'Mi', options: ['Mi', 'Ti', 'Gli', 'Le'], explanation: 'Mi — непрямий займенник "мені". Mi piace = мені подобається.' },
+  { id: 'g59', topicId: 'pronouns', type: 'multiple_choice', question: '___ piace la musica. (Тобі подобається музика.)', correctAnswer: 'Ti', options: ['Mi', 'Ti', 'Gli', 'Ci'], explanation: 'Ti — непрямий займенник "тобі". Ti piace = тобі подобається.' },
+  { id: 'g60', topicId: 'pronouns', type: 'multiple_choice', question: '___ piacciono i gatti. (Їм подобаються коти.)', correctAnswer: 'Gli', options: ['Mi', 'Ti', 'Gli', 'Vi'], explanation: 'Gli — непрямий займенник "їм" (множина). Gli piacciono = їм подобаються.' },
+];
