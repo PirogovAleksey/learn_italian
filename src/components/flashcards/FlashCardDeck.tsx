@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Word, DifficultyRating, SessionResult } from '../../types';
 import { XP_PER_DIFFICULTY, XP_DECK_COMPLETE_BONUS } from '../../data/gamification';
@@ -16,6 +16,14 @@ interface FlashCardDeckProps {
 export default function FlashCardDeck({ cards, onRate }: FlashCardDeckProps) {
   const navigate = useNavigate();
   const { recordReview } = useGameProgress();
+
+  // Snapshot cards at session start so rating doesn't shrink the list mid-session
+  const sessionCards = useRef<Word[]>(cards);
+  if (sessionCards.current.length === 0 && cards.length > 0) {
+    sessionCards.current = cards;
+  }
+  const deck = sessionCards.current;
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [lastXp, setLastXp] = useState(0);
@@ -32,7 +40,8 @@ export default function FlashCardDeck({ cards, onRate }: FlashCardDeckProps) {
 
   const handleRate = useCallback(
     (rating: DifficultyRating) => {
-      const card = cards[currentIndex];
+      const card = deck[currentIndex];
+      if (!card) return;
       onRate(card.id, rating);
 
       const xp = XP_PER_DIFFICULTY[rating] || 0;
@@ -45,11 +54,11 @@ export default function FlashCardDeck({ cards, onRate }: FlashCardDeckProps) {
       if (isEasy) setEasyCount(c => c + 1);
       setTotalXpEarned(t => t + xp);
 
-      if (currentIndex + 1 >= cards.length) {
+      if (currentIndex + 1 >= deck.length) {
         const deckBonus = XP_DECK_COMPLETE_BONUS;
         const finalXp = totalXpEarned + xp + deckBonus;
         setSessionResult({
-          totalCards: cards.length,
+          totalCards: deck.length,
           correctCount: correctCount + (isCorrect ? 1 : 0),
           easyCount: easyCount + (isEasy ? 1 : 0),
           xpEarned: finalXp,
@@ -61,10 +70,11 @@ export default function FlashCardDeck({ cards, onRate }: FlashCardDeckProps) {
         setCurrentIndex((prev) => prev + 1);
       }
     },
-    [cards, currentIndex, onRate, recordReview, totalXpEarned, correctCount, easyCount]
+    [deck, currentIndex, onRate, recordReview, totalXpEarned, correctCount, easyCount]
   );
 
   const handleRestart = useCallback(() => {
+    sessionCards.current = cards; // refresh snapshot with new due cards
     setCurrentIndex(0);
     setIsFlipped(false);
     setSessionResult(null);
@@ -72,9 +82,9 @@ export default function FlashCardDeck({ cards, onRate }: FlashCardDeckProps) {
     setEasyCount(0);
     setTotalXpEarned(0);
     setLastXp(0);
-  }, []);
+  }, [cards]);
 
-  if (cards.length === 0) {
+  if (deck.length === 0) {
     return (
       <div className={styles.empty}>
         <div className={styles.emptyIcon}>🎉</div>
@@ -94,7 +104,7 @@ export default function FlashCardDeck({ cards, onRate }: FlashCardDeckProps) {
     );
   }
 
-  const progress = ((currentIndex + 1) / cards.length) * 100;
+  const progress = ((currentIndex + 1) / deck.length) * 100;
 
   return (
     <div className={styles.deck}>
@@ -102,15 +112,15 @@ export default function FlashCardDeck({ cards, onRate }: FlashCardDeckProps) {
         <div className={styles.progressBar}>
           <div className={styles.progressFill} style={{ width: `${progress}%` }} />
         </div>
-        <span className={styles.progressText}>{currentIndex + 1} / {cards.length}</span>
+        <span className={styles.progressText}>{currentIndex + 1} / {deck.length}</span>
       </div>
 
       <FlashCard
-        word={cards[currentIndex]}
+        word={deck[currentIndex]}
         isFlipped={isFlipped}
         onFlip={handleFlip}
         current={currentIndex + 1}
-        total={cards.length}
+        total={deck.length}
         xpEarned={lastXp}
       />
 
