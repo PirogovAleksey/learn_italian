@@ -9,7 +9,8 @@ import { useGameProgress } from '../hooks/useGameProgress';
 import { getLevelForXp, getNextLevel, getLevelProgress } from '../utils/gamification';
 import styles from './HomePage.module.css';
 
-const WEEKDAYS = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД'];
+// JS getDay(): 0=Sun, map to Ukrainian week starting Monday
+const DAY_LABELS = ['НД', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
 
 export default function HomePage() {
   const { dueCards } = useSpacedRepetition(words);
@@ -29,12 +30,13 @@ export default function HomePage() {
   });
   const completedQuests = questProgress.filter(q => q.done).length;
 
-  // Streak calendar (last 7 days)
+  // Streak calendar (last 7 days, ending with today)
   const today = new Date();
-  const streakDays = WEEKDAYS.map((label, i) => {
-    const dayOffset = 6 - i;
+  const streakDays = Array.from({ length: 7 }, (_, i) => {
+    const dayOffset = 6 - i; // 6 days ago ... 0 = today
     const d = new Date(today);
     d.setDate(d.getDate() - dayOffset);
+    const label = DAY_LABELS[d.getDay()];
     const isToday = dayOffset === 0;
     const isInStreak = dayOffset < stats.streak;
     return { label, isToday, isInStreak };
