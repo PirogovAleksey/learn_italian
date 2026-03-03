@@ -118,6 +118,9 @@ export function useGameProgress() {
   }, [setStats, ensureDailyReset, updateStreak, refreshBadges]);
 
   const resetProgress = useCallback(() => {
+    // Clear all app localStorage keys
+    const keys = Object.keys(localStorage).filter(k => k.startsWith('italian_learn_'));
+    keys.forEach(k => localStorage.removeItem(k));
     setStats(DEFAULT_STATS);
   }, [setStats]);
 

@@ -18,21 +18,15 @@ export default function FlashCardDeck({ cards, onRate }: FlashCardDeckProps) {
   const { recordReview } = useGameProgress();
 
   // Snapshot cards at session start so rating doesn't shrink the list mid-session
-  const sessionCards = useRef<Word[]>(cards);
-  if (sessionCards.current.length === 0 && cards.length > 0) {
-    sessionCards.current = cards;
-  }
-  const deck = sessionCards.current;
+  const [deck, setDeck] = useState<Word[]>(() => cards);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [lastXp, setLastXp] = useState(0);
   const [sessionResult, setSessionResult] = useState<SessionResult | null>(null);
 
-  // Session tracking
-  const [correctCount, setCorrectCount] = useState(0);
-  const [easyCount, setEasyCount] = useState(0);
-  const [totalXpEarned, setTotalXpEarned] = useState(0);
+  // Session tracking via ref to avoid stale closure issues
+  const sessionRef = useRef({ correctCount: 0, easyCount: 0, totalXp: 0 });
 
   const handleFlip = useCallback(() => {
     setIsFlipped((prev) => !prev);
@@ -50,19 +44,21 @@ export default function FlashCardDeck({ cards, onRate }: FlashCardDeckProps) {
 
       const isCorrect = rating >= 3;
       const isEasy = rating === 5;
-      if (isCorrect) setCorrectCount(c => c + 1);
-      if (isEasy) setEasyCount(c => c + 1);
-      setTotalXpEarned(t => t + xp);
+
+      // Update session counters via ref (no stale closure)
+      const s = sessionRef.current;
+      if (isCorrect) s.correctCount += 1;
+      if (isEasy) s.easyCount += 1;
+      s.totalXp += xp;
 
       if (currentIndex + 1 >= deck.length) {
-        const deckBonus = XP_DECK_COMPLETE_BONUS;
-        const finalXp = totalXpEarned + xp + deckBonus;
+        const finalXp = s.totalXp + XP_DECK_COMPLETE_BONUS;
         setSessionResult({
           totalCards: deck.length,
-          correctCount: correctCount + (isCorrect ? 1 : 0),
-          easyCount: easyCount + (isEasy ? 1 : 0),
+          correctCount: s.correctCount,
+          easyCount: s.easyCount,
           xpEarned: finalXp,
-          newWordsLearned: correctCount + (isCorrect ? 1 : 0),
+          newWordsLearned: s.correctCount,
           deckCompleted: true,
         });
       } else {
@@ -70,17 +66,15 @@ export default function FlashCardDeck({ cards, onRate }: FlashCardDeckProps) {
         setCurrentIndex((prev) => prev + 1);
       }
     },
-    [deck, currentIndex, onRate, recordReview, totalXpEarned, correctCount, easyCount]
+    [deck, currentIndex, onRate, recordReview]
   );
 
   const handleRestart = useCallback(() => {
-    sessionCards.current = cards; // refresh snapshot with new due cards
+    setDeck(cards);
     setCurrentIndex(0);
     setIsFlipped(false);
     setSessionResult(null);
-    setCorrectCount(0);
-    setEasyCount(0);
-    setTotalXpEarned(0);
+    sessionRef.current = { correctCount: 0, easyCount: 0, totalXp: 0 };
     setLastXp(0);
   }, [cards]);
 

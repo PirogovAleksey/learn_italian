@@ -40,7 +40,7 @@ export function checkBadges(stats: AppStats): BadgeId[] {
   if (stats.totalWordsLearned >= 20) earned.push('words_20');
   if (stats.streak >= 7) earned.push('streak_7');
   if (stats.totalWordsLearned >= 50) earned.push('words_50');
-  if (stats.totalReviews >= 20 && stats.grammarCompleted > 0) {
+  if (stats.grammarCompleted >= 10) {
     const accuracy = stats.grammarCorrect / stats.grammarCompleted;
     if (accuracy >= 0.9) earned.push('accuracy_90');
   }

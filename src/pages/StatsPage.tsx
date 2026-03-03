@@ -3,11 +3,13 @@ import { words } from '../data/words';
 import { topics } from '../data/topics';
 import { BADGES, LEVELS } from '../data/gamification';
 import { useGameProgress } from '../hooks/useGameProgress';
+import { useSpacedRepetition } from '../hooks/useSpacedRepetition';
 import { getLevelForXp, getNextLevel, getLevelProgress } from '../utils/gamification';
 import styles from './StatsPage.module.css';
 
 export default function StatsPage() {
   const { stats, resetProgress } = useGameProgress();
+  const { getCardData } = useSpacedRepetition(words);
 
   const currentLevel = getLevelForXp(stats.totalXp);
   const nextLevel = getNextLevel(stats.totalXp);
@@ -22,20 +24,17 @@ export default function StatsPage() {
       .filter((t) => words.some((w) => w.topicId === t.id))
       .map((topic) => {
         const topicWords = words.filter((w) => w.topicId === topic.id);
+        const learnedInTopic = topicWords.filter((w) => getCardData(w.id).repetitions >= 2).length;
         const percent = topicWords.length > 0
-          ? Math.round((Math.min(stats.totalWordsLearned, topicWords.length) / topicWords.length) * 100)
+          ? Math.round((learnedInTopic / topicWords.length) * 100)
           : 0;
-        return { ...topic, total: topicWords.length, percent };
+        return { ...topic, total: topicWords.length, learned: learnedInTopic, percent };
       });
-  }, [stats.totalWordsLearned]);
+  }, [getCardData]);
 
   const handleReset = useCallback(() => {
     if (window.confirm('Ви впевнені? Весь прогрес буде видалено.')) {
       resetProgress();
-      const keys = Object.keys(localStorage).filter((k) =>
-        k.startsWith('italian_learn_')
-      );
-      keys.forEach((k) => localStorage.removeItem(k));
       window.location.reload();
     }
   }, [resetProgress]);
