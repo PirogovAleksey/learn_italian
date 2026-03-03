@@ -8,9 +8,7 @@ export default function Layout() {
     <>
       <Header />
       <main className={styles.main}>
-        <div className="container">
-          <Outlet />
-        </div>
+        <Outlet />
       </main>
       <BottomNav />
     </>

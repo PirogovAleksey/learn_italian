@@ -1,54 +1,64 @@
 .page {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: 18px;
 }
 
 .title {
-  font-size: var(--font-size-xl);
+  font-family: var(--font-display);
+  font-size: 22px;
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--text);
 }
 
 .subtitle {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  margin-top: var(--space-xs);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 4px;
 }
 
 .stats {
-  display: flex;
-  gap: var(--space-md);
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
 .stat {
   text-align: center;
-  padding: var(--space-sm) var(--space-md);
-  background: var(--color-surface);
-  border-radius: var(--radius-sm);
+  padding: 14px 10px;
+  background: var(--surface);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
-  flex: 1;
+  border: 1px solid var(--border);
 }
 
 .statValue {
-  font-size: var(--font-size-xl);
+  font-family: var(--font-display);
+  font-size: 22px;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--terracotta);
+  line-height: 1;
 }
 
 .statLabel {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
+  font-size: 10px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+  margin-top: 4px;
 }
 
 .backBtn {
   align-self: flex-start;
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
-  padding: var(--space-xs) var(--space-sm);
-  color: var(--color-primary);
+  gap: 6px;
+  font-size: 14px;
   font-weight: 600;
-  font-size: var(--font-size-sm);
+  color: var(--terracotta);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 }

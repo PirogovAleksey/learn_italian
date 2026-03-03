@@ -82,6 +82,50 @@ export interface Phrase {
   context?: string;
 }
 
+// === Гейміфікація ===
+export interface LevelDef {
+  level: number;
+  name: string;       // Italian name
+  subtitle: string;   // Ukrainian description
+  icon: string;
+  xpRequired: number; // XP to reach this level
+}
+
+export type BadgeId =
+  | 'first_word'
+  | 'streak_3'
+  | 'words_20'
+  | 'streak_7'
+  | 'words_50'
+  | 'accuracy_90'
+  | 'xp_500'
+  | 'all_topics'
+  | 'words_100';
+
+export interface BadgeDef {
+  id: BadgeId;
+  name: string;
+  description: string;
+  icon: string;
+}
+
+export interface DailyQuest {
+  id: string;
+  text: string;
+  xpReward: number;
+  target: number;
+  type: 'words' | 'grammar' | 'reviews';
+}
+
+export interface SessionResult {
+  totalCards: number;
+  correctCount: number;
+  easyCount: number;
+  xpEarned: number;
+  newWordsLearned: number;
+  deckCompleted: boolean;
+}
+
 // === Статистика ===
 export interface AppStats {
   totalWordsLearned: number;
@@ -89,5 +133,12 @@ export interface AppStats {
   grammarCompleted: number;
   grammarCorrect: number;
   streak: number;
+  longestStreak: number;
   lastStudyDate: string; // ISO date
+  totalXp: number;
+  earnedBadges: BadgeId[];
+  dailyWordsLearned: number;
+  dailyGrammarDone: number;
+  dailyReviews: number;
+  dailyDate: string; // ISO date — reset daily counters
 }

@@ -31,6 +31,10 @@ export default function FlashcardsPage() {
     return counts;
   }, []);
 
+  const topicName = selectedTopic && selectedTopic !== 'all'
+    ? topics.find(t => t.id === selectedTopic)?.name ?? 'Тема'
+    : 'Всі теми';
+
   if (selectedTopic === null) {
     return (
       <div className={styles.page}>
@@ -49,7 +53,7 @@ export default function FlashcardsPage() {
           </div>
           <div className={styles.stat}>
             <div className={styles.statValue}>{words.length}</div>
-            <div className={styles.statLabel}>Всього слів</div>
+            <div className={styles.statLabel}>Всього</div>
           </div>
         </div>
         <TopicSelector
@@ -65,9 +69,12 @@ export default function FlashcardsPage() {
   return (
     <div className={styles.page}>
       <button className={styles.backBtn} onClick={() => setSelectedTopic(null)}>
-        ← Назад до тем
+        ← {topicName} · {filteredWords.length} слів
       </button>
-      <FlashCardDeck cards={dueCards} onRate={rateCard} />
+      <FlashCardDeck
+        cards={dueCards}
+        onRate={rateCard}
+      />
     </div>
   );
 }

@@ -1,47 +1,50 @@
 .session {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: 16px;
 }
 
 .progress {
-  height: 4px;
-  background: var(--color-border);
-  border-radius: 2px;
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
   overflow: hidden;
 }
 
 .progressBar {
   height: 100%;
-  background: var(--color-primary);
+  background: linear-gradient(90deg, var(--terracotta), var(--terracotta-light));
   transition: width 0.3s ease;
+  border-radius: 4px;
 }
 
 .complete {
   text-align: center;
-  padding: var(--space-2xl) var(--space-md);
-  background: var(--color-surface);
-  border-radius: var(--radius-md);
+  padding: 48px 16px;
+  background: var(--surface);
+  border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
 }
 
 .completeIcon {
-  font-size: 3rem;
-  margin-bottom: var(--space-md);
+  font-size: 48px;
+  margin-bottom: 16px;
 }
 
 .completeTitle {
-  font-size: var(--font-size-lg);
+  font-family: var(--font-display);
+  font-size: 22px;
   font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: var(--space-sm);
+  color: var(--terracotta);
+  margin-bottom: 8px;
 }
 
 .completeStats {
   display: flex;
   justify-content: center;
-  gap: var(--space-xl);
-  margin: var(--space-lg) 0;
+  gap: 32px;
+  margin: 20px 0;
 }
 
 .completeStat {
@@ -49,22 +52,26 @@
 }
 
 .completeStatValue {
-  font-size: var(--font-size-xl);
+  font-family: var(--font-display);
+  font-size: 24px;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--terracotta);
 }
 
 .completeStatLabel {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
+  font-size: 11px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .restartBtn {
-  margin-top: var(--space-md);
-  padding: var(--space-sm) var(--space-xl);
-  background: var(--color-primary);
+  margin-top: 16px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark));
   color: white;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: var(--font-size-md);
+  border-radius: var(--radius-lg);
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 4px 16px rgba(199, 91, 57, 0.3);
 }

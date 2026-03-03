@@ -1,0 +1,203 @@
+.page {
+  text-align: center;
+}
+
+/* Celebration */
+.celebration {
+  margin-bottom: 28px;
+  position: relative;
+}
+.confetti {
+  font-size: 32px;
+  position: absolute;
+  animation: confettiFall 2s ease-out forwards;
+}
+.c1 { left: 15%; top: -10px; animation-delay: 0s; }
+.c2 { left: 45%; top: -20px; animation-delay: 0.2s; }
+.c3 { left: 75%; top: -5px; animation-delay: 0.4s; }
+.c4 { left: 30%; top: -15px; animation-delay: 0.1s; }
+.c5 { left: 60%; top: -10px; animation-delay: 0.3s; }
+
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg) scale(0); opacity: 0; }
+  20% { transform: translateY(10px) rotate(45deg) scale(1); opacity: 1; }
+  100% { transform: translateY(80px) rotate(180deg) scale(0.6); opacity: 0; }
+}
+
+.trophy {
+  font-size: 64px;
+  margin-bottom: 12px;
+  animation: trophyBounce 0.8s ease-out;
+}
+@keyframes trophyBounce {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--terracotta);
+  margin-bottom: 4px;
+}
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+/* XP Earned */
+.xpEarned {
+  background: linear-gradient(135deg, #FFF8E1, #FFF3CD);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(212, 168, 75, 0.2);
+}
+.xpValue {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  text-shadow: 0 2px 8px rgba(212, 168, 75, 0.3);
+}
+.xpLabel {
+  font-size: 14px;
+  color: #8D6E00;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.xpBreakdown {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 8px;
+  line-height: 1.8;
+}
+
+/* Summary grid */
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.summaryCard {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 18px 14px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+.summaryIcon {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+.summaryValue {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--terracotta);
+  line-height: 1;
+}
+.summaryLabel {
+  font-size: 11px;
+  color: var(--text-light);
+  margin-top: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Level progress */
+.levelProgress {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+  text-align: left;
+}
+.levelTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.levelLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.levelValue {
+  font-size: 12px;
+  color: var(--text-light);
+  font-weight: 600;
+}
+.levelBar {
+  height: 10px;
+  background: var(--border);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.levelBarFill {
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(90deg, var(--terracotta), var(--terracotta-light));
+  transition: width 0.5s ease;
+}
+.levelHint {
+  font-size: 11px;
+  color: var(--text-light);
+  margin-top: 6px;
+  text-align: right;
+}
+
+/* Nudge */
+.nudge {
+  background: linear-gradient(135deg, var(--olive), var(--olive-light));
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+.nudgeText { margin-bottom: 2px; }
+.nudgeSub {
+  font-size: 12px;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+/* Buttons */
+.btnPrimary {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark));
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 4px 16px rgba(199, 91, 57, 0.3);
+  margin-bottom: 10px;
+}
+.btnSecondary {
+  width: 100%;
+  padding: 14px;
+  background: none;
+  color: var(--terracotta);
+  border: 2px solid var(--terracotta);
+  border-radius: var(--radius-lg);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}

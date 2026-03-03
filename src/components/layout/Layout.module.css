@@ -1,8 +1,5 @@
 .main {
   flex: 1;
-  padding: var(--space-md) 0;
-  padding-bottom: calc(var(--bottom-nav-height) + var(--space-md));
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
+  padding: 20px 16px;
+  padding-bottom: calc(var(--bottom-nav-height) + 20px);
 }
